@@ -1,0 +1,16 @@
+[ 9.10 2주 2 ]
+Vertex Shader 하나의 스테에지에서 몇 개의 입력을(vertex)를 받아서 처리하는가? -> 1개
+Fragment Shader '' -> 1개 (의 픽셀)
+Primitive Assembly는 세 개의 VetexShader의 출력을 필요로 한다.
+Rasterization and Interpolation 에서 Fragment 의 갯수를 결정한다.
+Frame Buffer는 vertex 를 구성(?)하는 픽셀들의 갯수만큼  수행된다.
+(Fragment Shader -> Frame Buffer 에서 Fragment Shader 는 해당 vertex 를 구성하는 픽셀들의 갯수만큼  수행된다.)
+
+세 정점에 각각 R G B 의 원색을 넣었는데 왜 중간 픽셀은 원색이 아닌가?
+	-> 보간되었기 때문
+	-> Fragment Shader는 보간된 결과를 받는다.
+
+삼각형의 윗대가리만 날리는법?
+	-> if 문과 discard 를 통해..
+	-> discard가 되면, 픽셀을 버리고 그 이후의 코드는 실행되지 않는다.
+
