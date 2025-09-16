@@ -15,3 +15,4 @@ Frame Buffer는 vertex 를 구성(?)하는 픽셀들의 갯수만큼  수행된�
 	-> discard가 되면, 픽셀을 버리고 그 이후의 코드는 실행되지 않는다.
 
 [ 9.16 3주 1 ]
+Shader는 Uniform 으로 시간을 받는다

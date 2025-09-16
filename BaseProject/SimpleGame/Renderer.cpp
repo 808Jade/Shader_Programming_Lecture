@@ -51,17 +51,17 @@ void Renderer::CreateVertexBufferObjects()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(rect), rect, GL_STATIC_DRAW);
 
 	float center = 0.5f;
-	float size = 1;
+	float size = 0.1;
 	float testPos[]
 		=
 	{
-		(0.f - center)* size, (0.f - center)* size , 0.f,
-		(1.f - center)* size, (0.f - center)* size , 0.f,
-		(1.f - center)* size, (1.f - center)* size , 0.f, //Triangle1
+		(0.f - center)* size, (0.f - center)* size, 0.f,
+		(1.f - center)* size, (0.f - center)* size, 0.f,
+		(1.f - center)* size, (1.f - center)* size, 0.f, //Triangle1
 
-		(0.f - center)* size, (0.f - center)* size , 0.f,
-		(1.f - center)* size, (1.f - center)* size , 0.f,
-		(0.f - center)* size, (1.f - center)* size , 0.f, //Triangle2
+		(0.f - center)* size, (0.f - center)* size, 0.f,
+		(1.f - center)* size, (1.f - center)* size, 0.f,
+		(0.f - center)* size, (1.f - center)* size, 0.f, //Triangle2
 	};
 
 	glGenBuffers(1, &m_VBOTestPos);
@@ -230,11 +230,13 @@ void Renderer::DrawSolidRect(float x, float y, float z, float size, float r, flo
 
 void Renderer::DrawTest()
 {
+	m_Time += 0.016;
+	
 	//Program select
 	glUseProgram(m_TestShader);
 
-	//glUniform4f(glGetUniformLocation(m_TestShader, "u_Trans"), 0, 0, 0, 1);
-	//glUniform4f(glGetUniformLocation(m_TestShader, "u_Color"), 1, 1, 1, 1);
+	int uTimeLoc = glGetUniformLocation(m_Time, "u_Time");
+	glUniform1f(uTimeLoc, m_Time);
 
 	int aPosLoc = glGetAttribLocation(m_TestShader, "a_Position");
 	glEnableVertexAttribArray(aPosLoc);
