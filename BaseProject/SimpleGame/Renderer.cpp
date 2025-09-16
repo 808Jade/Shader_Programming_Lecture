@@ -230,12 +230,12 @@ void Renderer::DrawSolidRect(float x, float y, float z, float size, float r, flo
 
 void Renderer::DrawTest()
 {
-	m_Time += 0.016;
-	
+	m_Time += 0.016f;
+
 	//Program select
 	glUseProgram(m_TestShader);
 
-	int uTimeLoc = glGetUniformLocation(m_Time, "u_Time");
+	int uTimeLoc = glGetUniformLocation(m_TestShader, "u_Time");
 	glUniform1f(uTimeLoc, m_Time);
 
 	int aPosLoc = glGetAttribLocation(m_TestShader, "a_Position");

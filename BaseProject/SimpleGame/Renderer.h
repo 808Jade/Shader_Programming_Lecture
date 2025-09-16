@@ -37,7 +37,5 @@ private:
 	GLuint m_VBOTestColor = 0;
 
 	float m_Time = 0;
-	float m_PI = 3.14;
-	float m_Rad = 0;
 };
 
