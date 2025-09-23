@@ -16,3 +16,17 @@ Frame Buffer는 vertex 를 구성(?)하는 픽셀들의 갯수만큼  수행된�
 
 [ 9.16 3주 1 ]
 Shader는 Uniform 으로 시간을 받는다
+
+[ 9.23 4주 1 ]
+Shader 실시간 Reloading (매 순간 컴파일 하는 오버헤드를 없애보자)
+
+Renderloop 안에서 DrawCall << 여기서 참조하는것은바로  Shader Program
+			<< key input event 호출 -> API 호출 (또 다른 쓰레드처럼 동작)
+			<< Shader Program 을 날리고, 새 프로그램을 연결시키고자.. lock() 필요?
+			Drawcall 에서 Shader Program 참조를 끊고 다른 친구에게 연결하는 동작을 실습
+
+중력 구현
+	
+각 파티클별로 랜덤한 생성 시간을 줘보자
+
+CreateParticles(1000); 에서 몇 개를 넣었을 떄 부터 느려지는가? 로 컴퓨터 성능 체크 가능
