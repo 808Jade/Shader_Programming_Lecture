@@ -26,6 +26,8 @@ void Renderer::Initialize(int windowSizeX, int windowSizeY)
 
 	m_GridMeshShader = CompileShaders("./Shaders/GridMesh.vs", "./Shaders/GridMesh.fs");
 
+	m_FullScreenShader = CompileShaders("./Shaders/FullScreen.vs", "./Shaders/FullScreen.fs");
+
 	//Create VBOs
 	CreateVertexBufferObjects();
 
@@ -33,7 +35,7 @@ void Renderer::Initialize(int windowSizeX, int windowSizeY)
 	CreateParticles(10000);
 
 	// Create GridMeshs
-	CreateGridMesh(10,10);
+	CreateGridMesh(50,50);
 
 	if (m_TestShader > 0 && m_VBORect > 0)
 	{
@@ -46,6 +48,8 @@ void Renderer::DeleteAllShaderPrograms()
 	glDeleteShader(m_TestShader);
 	glDeleteShader(m_SolidRectShader);
 	glDeleteShader(m_ParticleShader);
+	glDeleteShader(m_GridMeshShader);
+	glDeleteShader(m_FullScreenShader);
 }
 
 void Renderer::CompileAllShaderPrograms()
@@ -120,6 +124,17 @@ void Renderer::CreateVertexBufferObjects()
 	glGenBuffers(1, &m_VBOTestColor);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestColor);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(testColor), testColor, GL_STATIC_DRAW);
+
+	float fullRect[]
+		=
+	{
+		-1, -1, 0, 1, 1, 0, -1, 1, 0,
+		-1, -1, 0, 1, -1, 0, 1, 1, 0
+	};
+
+	glGenBuffers(1, &m_FullScreenVBO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_FullScreenVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fullRect), fullRect, GL_STATIC_DRAW);
 }
 
 void Renderer::CreateGridMesh(int x, int y)
@@ -403,6 +418,33 @@ void Renderer::DrawGridMesh()
 
 	// 해도 되고 안해도 됨
 	glDisableVertexAttribArray(aPosLoc);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	glDisable(GL_BLEND);
+}
+
+void Renderer::DrawFullScreenColor(float r, float g, float b, float a)
+{
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//Program select
+	int shader = m_FullScreenShader;
+	glUseProgram(shader);
+
+	glUniform4f(glGetUniformLocation(shader, "u_Color"), r, g, b, a);
+
+	int attribPosition = glGetAttribLocation(shader, "a_Position");
+	glEnableVertexAttribArray(attribPosition);
+
+	glBindBuffer(GL_ARRAY_BUFFER, m_FullScreenVBO);
+	glVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+
+	// 넘겨져야하는 정점의 갯수 = 6
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glDisableVertexAttribArray(attribPosition);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
