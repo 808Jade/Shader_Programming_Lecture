@@ -1,13 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\C221-08\\Desktop\\Shader_Programming_Lecture\\BaseProject\\",
+  "WorkspaceRootPath": "C:\\Shader_Programming\\BaseProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|C:\\Users\\C221-08\\Desktop\\Shader_Programming_Lecture\\BaseProject\\SimpleGame\\Shaders\\GridMesh.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|C:\\Shader_Programming\\BaseProject\\SimpleGame\\Shaders\\GridMesh.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|solutionrelative:SimpleGame\\Shaders\\GridMesh.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|C:\\Users\\C221-08\\Desktop\\Shader_Programming_Lecture\\BaseProject\\SimpleGame\\SimpleGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|C:\\Shader_Programming\\BaseProject\\SimpleGame\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|solutionrelative:SimpleGame\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|C:\\Shader_Programming\\BaseProject\\SimpleGame\\Shaders\\GridMesh.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
+      "RelativeMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|solutionrelative:SimpleGame\\Shaders\\GridMesh.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|C:\\Shader_Programming\\BaseProject\\SimpleGame\\Renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|solutionrelative:SimpleGame\\Renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|C:\\Shader_Programming\\BaseProject\\SimpleGame\\SimpleGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{25179D6C-FA85-4619-8EDB-AC241382F6CA}|SimpleGame\\SimpleGame.vcxproj|solutionrelative:SimpleGame\\SimpleGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -18,33 +30,79 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GridMesh.fs",
+              "DocumentMoniker": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\Shaders\\GridMesh.fs",
+              "RelativeDocumentMoniker": "SimpleGame\\Shaders\\GridMesh.fs",
+              "ToolTip": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\Shaders\\GridMesh.fs",
+              "RelativeToolTip": "SimpleGame\\Shaders\\GridMesh.fs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-10-21T12:59:11.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Renderer.h",
+              "DocumentMoniker": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\Renderer.h",
+              "RelativeDocumentMoniker": "SimpleGame\\Renderer.h",
+              "ToolTip": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\Renderer.h",
+              "RelativeToolTip": "SimpleGame\\Renderer.h",
+              "ViewState": "AgIAACkAAAAAAAAAAAAMwD4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-10-21T12:43:48.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Renderer.cpp",
+              "DocumentMoniker": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\Renderer.cpp",
+              "RelativeDocumentMoniker": "SimpleGame\\Renderer.cpp",
+              "ToolTip": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\Renderer.cpp",
+              "RelativeToolTip": "SimpleGame\\Renderer.cpp",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAMwKAAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-21T12:42:11.176Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "GridMesh.vs",
-              "DocumentMoniker": "C:\\Users\\C221-08\\Desktop\\Shader_Programming_Lecture\\BaseProject\\SimpleGame\\Shaders\\GridMesh.vs",
+              "DocumentMoniker": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\Shaders\\GridMesh.vs",
               "RelativeDocumentMoniker": "SimpleGame\\Shaders\\GridMesh.vs",
-              "ToolTip": "C:\\Users\\C221-08\\Desktop\\Shader_Programming_Lecture\\BaseProject\\SimpleGame\\Shaders\\GridMesh.vs",
-              "RelativeToolTip": "SimpleGame\\Shaders\\GridMesh.vs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAQwEMAAAAeAAAAAAAAAA==",
+              "ToolTip": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\Shaders\\GridMesh.vs*",
+              "RelativeToolTip": "SimpleGame\\Shaders\\GridMesh.vs*",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAEkAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-10-21T06:29:46.507Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "SimpleGame.cpp",
-              "DocumentMoniker": "C:\\Users\\C221-08\\Desktop\\Shader_Programming_Lecture\\BaseProject\\SimpleGame\\SimpleGame.cpp",
+              "DocumentMoniker": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\SimpleGame.cpp",
               "RelativeDocumentMoniker": "SimpleGame\\SimpleGame.cpp",
-              "ToolTip": "C:\\Users\\C221-08\\Desktop\\Shader_Programming_Lecture\\BaseProject\\SimpleGame\\SimpleGame.cpp",
+              "ToolTip": "C:\\Shader_Programming\\BaseProject\\SimpleGame\\SimpleGame.cpp",
               "RelativeToolTip": "SimpleGame\\SimpleGame.cpp",
               "ViewState": "AgIAAFQAAAAAAAAAAADwv2sAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-21T06:29:27.002Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-21T06:29:27.002Z"
             }
           ]
         }

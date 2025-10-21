@@ -4,8 +4,8 @@
 in vec3 a_Position;
 out vec4 v_Color;
 uniform float u_Time;
-uniform int u_DropCount;
 uniform vec4 u_Points[MAX_POINTS];
+uniform int u_DropCount;
 
 const float c_PI = 3.141592;
 //const vec4 c_Points[MAX_POINTS] = vec4[](vec4(0,0,2,2),vec4(0.5,0,3,3),vec4(-0.5,0,4,4));
@@ -61,27 +61,28 @@ void rainDrop()
 	
     for (int i = 0; i < u_DropCount; ++i)
     {
-        vec2 cen = c_Points[i].xy;
-        float sTime = c_Points[i].z;
-        float lTime = c_Points[i].w;
+        vec2 cen = u_Points[i].xy;
+        float sTime = u_Points[i].z;
+        float lTime = u_Points[i].w;
 		
-        float newTime = u_Time - lTime;
+        float newTime = u_Time - sTime;
         if (newTime > 0)
         {
             float baseTime = fract(newTime / lTime);
             float oneMinus = 1-baseTime;
             float t = baseTime * lTime;
-            float range = baseTime * lTime / 10;
+            float range = baseTime * lTime / 100;
+
             float d = distance(pos, cen);
             float value = sin(d * 4 * c_PI * 10 - (t * 10));
             float p = 30*clamp(range * 2, 0, 1);
+
+			newColor += value * p;
         }
     }
-	
-    float d = distance(a_Position.xy, vec2(0, 0));
-
     v_Color = vec4(newColor);
 }
+
 void main()
 {
 	//flag();

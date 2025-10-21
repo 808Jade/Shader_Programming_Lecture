@@ -60,7 +60,7 @@ private:
 	//GLuint m_FullScreenVertexCount = 0;
 	GLuint m_FullScreenShader = 0;
 
-	// rinadrop
+	// raindrop
 	int m_Dc = 100;
 	float m_Points[MAX_POINTS * 4];
 };
