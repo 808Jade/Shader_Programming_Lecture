@@ -35,7 +35,21 @@ void Renderer::Initialize(int windowSizeX, int windowSizeY)
 	CreateParticles(10000);
 
 	// Create GridMeshs
-	CreateGridMesh(50,50);
+	CreateGridMesh(1000,1000);
+
+	// rainDrop points
+	int index = 0;
+	for (int i = 0; i < MAX_POINTS; ++i)
+	{
+		float x = 2 * ((float)rand() / (float)RAND_MAX) - 1;
+		float y = 2 * ((float)rand() / (float)RAND_MAX) - 1;
+		float sTime = ((float)rand() / (float)RAND_MAX) * 6;
+		float lTime = ((float)rand() / (float)RAND_MAX);
+		m_Points[index] = x; index++;
+		m_Points[index] = y; index++;
+		m_Points[index] = sTime; index++;
+		m_Points[index] = lTime; index++;
+	}
 
 	if (m_TestShader > 0 && m_VBORect > 0)
 	{
@@ -406,6 +420,12 @@ void Renderer::DrawGridMesh()
 
 	int uTimeLoc = glGetUniformLocation(shader, "u_Time");
 	glUniform1f(uTimeLoc, m_Time);
+
+	int uPointsLoc = glGetUniformLocation(shader, "u_Points");
+	glUniform4fv(uPointsLoc, MAX_POINTS, m_Points);
+
+	int uDcLoc = glGetUniformLocation(shader, "u_Points");
+	glUniform1i(uDcLoc, MAX_POINTS, m_Dc);
 
 	int aPosLoc = glGetAttribLocation(shader, "a_Position");
 	glEnableVertexAttribArray(aPosLoc);

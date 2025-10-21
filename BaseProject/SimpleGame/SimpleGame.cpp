@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(0, 0);
-	glutInitWindowSize(500, 500);
+	glutInitWindowSize(1000, 1000);
 	glutCreateWindow("Game Software Engineering KPU");
 
 	glewInit();
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
 	}
 
 	// Initialize Renderer
-	g_Renderer = new Renderer(500, 500);
+	g_Renderer = new Renderer(1000, 1000);
 	if (!g_Renderer->IsInitialized())
 	{
 		std::cout << "Renderer could not be initialized.. \n";
