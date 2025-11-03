@@ -21,19 +21,18 @@ bool g_bNeedReloadShaderPrograms = false;
 
 void RenderScene(void)
 {
-	if (g_bNeedReloadShaderPrograms)
-	{
+	if (g_bNeedReloadShaderPrograms) {
 		g_Renderer->ReloadAllShaderPrograms();
 		g_bNeedReloadShaderPrograms = false;
 	}
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//g_Renderer->DrawFullScreenColor(0, 0, 0, 0.5); //	모션블러
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	// Renderer Test
 	//g_Renderer->DrawTest();
-	//g_Renderer->DrawParticle();
-	g_Renderer->DrawGridMesh();
+	g_Renderer->DrawParticle();
+	//g_Renderer->DrawGridMesh();
 
 	glutSwapBuffers();
 }

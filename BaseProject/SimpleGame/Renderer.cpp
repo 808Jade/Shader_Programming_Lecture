@@ -18,15 +18,7 @@ void Renderer::Initialize(int windowSizeX, int windowSizeY)
 	m_WindowSizeY = windowSizeY;
 
 	//Load shaders
-	m_SolidRectShader = CompileShaders("./Shaders/SolidRect.vs", "./Shaders/SolidRect.fs");
-	
-	m_TestShader = CompileShaders("./Shaders/Test.vs", "./Shaders/Test.fs");
-
-	m_ParticleShader = CompileShaders("./Shaders/Particle.vs", "./Shaders/Particle.fs");
-
-	m_GridMeshShader = CompileShaders("./Shaders/GridMesh.vs", "./Shaders/GridMesh.fs");
-
-	m_FullScreenShader = CompileShaders("./Shaders/FullScreen.vs", "./Shaders/FullScreen.fs");
+	CompileAllShaderPrograms();
 
 	//Create VBOs
 	CreateVertexBufferObjects();
@@ -62,13 +54,19 @@ void Renderer::DeleteAllShaderPrograms()
 	glDeleteShader(m_TestShader);
 	glDeleteShader(m_SolidRectShader);
 	glDeleteShader(m_ParticleShader);
+	//glDeleteShader(m_PracticeShader);
 	glDeleteShader(m_GridMeshShader);
 	glDeleteShader(m_FullScreenShader);
 }
 
 void Renderer::CompileAllShaderPrograms()
 {
-	Initialize(m_WindowSizeX, m_WindowSizeY);
+	m_SolidRectShader = CompileShaders("./Shaders/SolidRect.vs", "./Shaders/SolidRect.fs");
+	m_TestShader = CompileShaders("./Shaders/test.vs", "./Shaders/test.fs");
+	m_ParticleShader = CompileShaders("./Shaders/particle.vs", "./Shaders/particle.fs");
+	//m_PracticeShader = CompileShaders("./Shaders/practice.vs", "./Shaders/practice.fs");
+	m_GridMeshShader = CompileShaders("./Shaders/GridMesh.vs", "./Shaders/GridMesh.fs");
+	m_FullScreenShader = CompileShaders("./Shaders/FullScreen.vs", "./Shaders/FullScreen.fs");
 }
 
 bool Renderer::IsInitialized()

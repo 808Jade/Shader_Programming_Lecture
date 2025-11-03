@@ -2,7 +2,9 @@
 #define MAX_POINTS 500
 
 in vec3 a_Position;
+
 out vec4 v_Color;
+
 uniform float u_Time;
 uniform vec4 u_Points[MAX_POINTS];
 uniform int u_DropCount;
@@ -66,18 +68,18 @@ void rainDrop()
         float lTime = u_Points[i].w;
 		
         float newTime = u_Time - sTime;
-        if (newTime > 0)
+        if (newTime > 0.0f)
         {
             float baseTime = fract(newTime / lTime);
-            float oneMinus = 1-baseTime;
+            float oneMinus = 1 - baseTime;
             float t = baseTime * lTime;
-            float range = baseTime * lTime / 100;
+            float range = baseTime * lTime / 10;
 
             float d = distance(pos, cen);
             float value = sin(d * 4 * c_PI * 10 - (t * 10));
-            float p = 30*clamp(range * 2, 0, 1);
+            float p = 30 * clamp(range - d, 0, 1);
 
-			newColor += value * p;
+			newColor += value * p * oneMinus;
         }
     }
     v_Color = vec4(newColor);
