@@ -68,9 +68,213 @@ DrawfullScreenRect
 
 병렬프로세싱에서 가장 하지말아야 할 것은 '분기'
 	ceil() 올림
-	clamp(A,0,1) 0보다 작은건 0 1보다 큰건 1?
+	clamp(A,0,1) 0보다 작은건 0 1보다 큰건 1?c`
 	Color 의 - 값은 0 으로 친다
 
+[ 10.22 8주 2 ]
+* 앞으로의 계획
+	vs마무리(완) - git - render target - fs
+
+* git 이야기
+
+* git과 github의 차이점은?
+
+* git clone 
+	그야말로 쌍둥이와 같은..
+	
+* git VCS
+	현재 내 워킹디렉토리를 지우고 버전에 맞는 걸로 다운받는다 vs 포인터를 가지고 재구성
+
+* 네트워크 사용 최소화
+
+무결성 pass
+* 모든 변화는 데이터를 추가함으로서 이루어짐
+
+* 파일 구성 3단계
+	포인터로 버전에  local 하게 빠르게 접근할 수 있다
+
+** git은 변화를 감지한다
+
+* git init
+
+* vim a.txt
+	i - 입력
+	esc - 탈출
+	
+* git add
+* git commit
+	objects 파일 확인
+		변화 감지(hash code)
+	commit id는 하나의 유일무이한 버전이 된다
+
+* git status
+	수정하고 저장소에 적용하기 의 내용들을 확인할 수 있음 p.13
+
+* stage 된 파일이 수정되었을 때
+	modified(빨강)
+	worging directory 내용빼고 나머지 두 개는 같다
+	git add -> modfied(초록)
+	working directory 내용과 staging area 내용이 같다
+	여기서 다시 a.txt 를 수정한 다음 commit을 해버린다면?
+	-> 
+
+* git diff
+	working directory <> staging Area
+	add 전에 확인 가능
+	add하면 암것도안나옴
+* git diff --status
+	Staging Area <> git repository
+	add 하고나서도 확인 가능
+
+* 삭제도 변화다
+	git rm c.txt	- add 안해도댐
+	rm b.txt	- add 해야함
+
+* stage 된 걸 삭제해보자(stagie 에 있는 내용을 지우고 원상복구)
+	git rm --cached [filename]
+	untracted file 로 바뀜
+
+* 파일 이름 변경
+	git mv [filename] [newfilename]
+	어떻게 어떤파일이 어떤파일로 바뀌엇는지 알아채는가? - hash code 의 동일함을 캐치함햣
+
+
+[ 10.28 9주 1 ] *시험
+git은 가볍다 (가벼워야 한다)
+브랜치가 가볍다
+
+
+git에서 head란?
+commit 하면 어떤 일이 일어나는가?
+branch를 파면 어떤 일이 일어나는가?
+
+* git branch 의 필요
+	다른 가지를 건드리지 않는다는 보장
+	협업
+	서로간의 간섭 X
+	분리
+	독립적으로 작업할 수 있음
+
+* branch
+	tree - blob - 
+
+	바로 직전 단계의 commit을 부모로 삼는다
+
+	head : 내 워킹디렉토리를 이루는 마지막 커밋을 가리키고 있는 놈
+		head를 옮긴다 = 다른 버전으로 옮긴다
+	
+	branch 는 commit id 정보 하나만 가지고 있다
+	.git > refs > heads 에 있는 파일에서 가리키고 있는 커밋 주소를 볼 수 있다
+	
+* git checkout [branchName]
+	head의 이동
+	working 디렉토리 재구성 (blob들의 재조합) (아주 빠르게)
+
+* head의 이동
+	vim e.txt 만 하고 git checkout 을 시도하면? 막음 (abort)
+	재구성 했을 때, overwrite 되거나 삭제되는 것은 문제다
+	그냥 추가는 문제 없음
+	checkout을 시도하면? 됨
+
+	** 시험
+	repository에 있느냐 / 없느냐 를 기준으로
+	checkout이 되느냐 안되느냐
+	
+* 브랜치 이동하기, 화살표 ㅈㄴ많은 페이지 pass
+
+* 브랜치 병합
+	다른 브랜치의 내용을 가져와서 내 브랜치에 변화를 만들어낸다
+	both added:	e.txt
+	
+
+[ 10.29 9주 2 ]
+git commit, branch checkout 흐름을 그림으로 설명
+
+* vim d.txt 만 하고 아무것도 안했어
+	디렉토리에는 안들어갔겠고
+	워킹디렉토리에는 들어갔겠고
+	스테이징 area에도 안들어갔겠고
+
+* iss01 에서 vim d.txt 만 하고 checkout master 했어, 현재 워킹디렉토리에는?
+	a
+	b
+	d (untracted)
+
+
+* 위 상태에서 add d.txt , commit 까지 하고 iss01 에서 vim d.txt 만 하고 checkout to master 시도
+	d:iss01 d
+	안댐
+
+* vim e.txt , git add d.txt , 이상태에서 commit
+
+* 이 상태에서 git branch iss01_01
+
+* iss01_01 로 checkout 하고 commit
+	a:a
+	b:b
+	c:c
+	d:iss01 d
+	e:e
+
+* master로 가서 merge
+	three way merge : 변화를 우선한다
+	conflict vs merge
+	conflict 이 발생하는 부분이 있는가? 있다면 어디인가
+	-> d.txt 에 conflict가 생긴다
+	conflict 가 발생한 파일의 내용은 모두 q로 바꾼다고 가정 (conflict 해결 -> add -> commit)
+
+* fast foward merge
+
+* 브랜치 삭제 git branch -d iss01_01
+	삭제한 기록도 남아있다
+
+* git branch -d iss01
+* git branch iss02
+* git checkout iss02
+* vim f.txt
+* git add f.txt
+* commit f.txt
+* git checkout master
+* git branch -d iss02
+	-> merge되지 않았는데 지울 것인지 물어봄 (abort)
+	-> 강제로 지우기 : git branch -D iss02
+
+* git branch iss03
+* git branch
+	브랜치 목록 출력
+	등등 ppt
+* git branch -a
+	remotes/origin/HEAD -> origin/main
+
+
+* 특정 버전으로 가기
+	1. checkout (head를 옮기는 거에 불과)
+		git checkout [commit id]
+		내 워킹디렉터리를 재구성하는 것
+	2. 브랜치 정보를 바꾸기
+		현재 브랜치가 가리키고 있는 commit id 가 바뀜
+	
+	(ppt Index 영역은 staging 영역이다)
+	
+* 실습
+v1	1f53bc1
+v2	290570e
+v3	2f28046
+
+* 리셋 시도
+git reset --soft 290570e
+cat file.txt : v3
+
+* 리셋을 취소
+git reset --soft 2f28046
+
+* 리셋 시도2
+git reset --mixed
+	index(staging) 영역까지 업데이트를 해줌
+
+* 리셋 시도3
+git reset --hard
+	woring디렉토리 영역가지 업데이트를 해줌
 
 
 
