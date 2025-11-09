@@ -276,6 +276,56 @@ git reset --mixed
 git reset --hard
 	woring디렉토리 영역가지 업데이트를 해줌
 
+============================================================================================중간 이후
+[ 11.4 10주1 ] 시험 
+[ 11.5 10주2 ]
+* WD safe or not 중요
+* git stash pass
+	내가 작업하던 거를 잠시 저장한다
+	stash 를 복구할 떄도 conflict가 일어날 수 있다
+	브랜치와 거의 비슷한 동작을 한다
+
+* Git remote repository
+	$ git remote
+	
+	ppt animation
+	local 로 가지고 있던 브랜치는 사실 origin/master 였다
+	remote에 브랜치가 연결되기 위해서는 master 앞에 origin 
+	remote가 가지고있는 origin 의 master에 연결
+
+	* fetch
+		다 가져와서 origin/master 에서 merge (Fast Fowrard Merge 가 되겠음)
+	
+	$ git clone ../remote
+
+	remote
+	local a
+	local b 실습
+	
+	* rebase
+		ppt link
+		시험에는안나옴..
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

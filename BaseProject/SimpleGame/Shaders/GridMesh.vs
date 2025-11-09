@@ -19,16 +19,15 @@ void flag()
 	float value = ( a_Position.x + 0.5 ) * 2 * c_PI;
 	float value1 = ( a_Position.x + 0.5 );
 	float dx = 0;
-	float dy = value1 * 0.2 * sin(value + u_Time * 10);
+	float dy = value1 * 0.3 * sin(value - u_Time * 10);
 	
-	newPosition.y *= 1 - value1;
+	newPosition.y *= 1 - value1; // 깃발처럼 x가 클 수록 y가 모이게..
 	newPosition.xy += vec2(dx, dy);
 
 	gl_Position = newPosition;
 
-	float shading = (sin(value - u_Time * 10)+1)/2 + 0.2 ;
+	float shading = (sin(value - u_Time * 10) + 1) / 2 + 0.2 ;
 
-	vec3 rgb = vec3(-dy+0.3, -dy+0.3, -dy+0.3);
 	v_Color = vec4(shading);
 }
 
@@ -48,7 +47,7 @@ void wave()
 	// 서서히 사라지게
 	float p = 1 - clamp(d*2, 0, 1);
 
-	v_Color = vec4(value*p);
+	v_Color = vec4(value * p);
 
 	// 거리가 한 찰 바뀔 때 마다 0 or 1
 }
@@ -85,9 +84,25 @@ void rainDrop()
     v_Color = vec4(newColor);
 }
 
+void Q1() // 물결, 다이아몬드
+{
+	vec4 newPosition = vec4(a_Position, 1);
+
+	float valueX = 2 * (newPosition.x + 0.5) * c_PI; // 하단에서는 0 상단에서는 2PI
+	float valueY = 2 * (newPosition.y + 0.5) * c_PI; // 하단에서는 0 상단에서는 2PI
+
+	float grayScale = sin(valueX * 4);
+	grayScale += sin(valueY*4);			// sin 곡선 두 개가 겹치면..
+
+	gl_Position = newPosition;
+
+	v_Color = vec4(grayScale);
+}
+
 void main()
 {
 	//flag();
 	//wave();
-    rainDrop();
+    //rainDrop();
+	Q1();
 }

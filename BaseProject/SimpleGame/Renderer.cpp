@@ -22,11 +22,9 @@ void Renderer::Initialize(int windowSizeX, int windowSizeY)
 
 	//Create VBOs
 	CreateVertexBufferObjects();
-
-	// Create Praticles
+	// Create Praticles VBO
 	CreateParticles(10000);
-
-	// Create GridMeshs
+	// Create GridMeshs VBO
 	CreateGridMesh(1000,1000);
 
 	// rainDrop points
@@ -54,7 +52,6 @@ void Renderer::DeleteAllShaderPrograms()
 	glDeleteShader(m_TestShader);
 	glDeleteShader(m_SolidRectShader);
 	glDeleteShader(m_ParticleShader);
-	//glDeleteShader(m_PracticeShader);
 	glDeleteShader(m_GridMeshShader);
 	glDeleteShader(m_FullScreenShader);
 }
@@ -64,7 +61,6 @@ void Renderer::CompileAllShaderPrograms()
 	m_SolidRectShader = CompileShaders("./Shaders/SolidRect.vs", "./Shaders/SolidRect.fs");
 	m_TestShader = CompileShaders("./Shaders/test.vs", "./Shaders/test.fs");
 	m_ParticleShader = CompileShaders("./Shaders/particle.vs", "./Shaders/particle.fs");
-	//m_PracticeShader = CompileShaders("./Shaders/practice.vs", "./Shaders/practice.fs");
 	m_GridMeshShader = CompileShaders("./Shaders/GridMesh.vs", "./Shaders/GridMesh.fs");
 	m_FullScreenShader = CompileShaders("./Shaders/FullScreen.vs", "./Shaders/FullScreen.fs");
 }
@@ -400,7 +396,7 @@ void Renderer::DrawTest()
 	glVertexAttribPointer(aColorLoc, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0);
 
 	// 넘겨져야하는 정점의 갯수 = 12
-	glDrawArrays(GL_TRIANGLES, 0, m_VBOParticlesVertexCount - 6*9990);
+	glDrawArrays(GL_TRIANGLES, 0, 12);
 
 	glDisableVertexAttribArray(aPosLoc);
 	glDisableVertexAttribArray(aColorLoc);
@@ -484,7 +480,7 @@ void Renderer::DrawParticle()
 	glUniform1f(uTimeLoc, m_Time);
 
 	int uForceLoc = glGetUniformLocation(shader, "u_Force");
-	glUniform3f(uForceLoc, 2, 0, 0);
+	glUniform3f(uForceLoc, 4, 0, 0);
 
 
 	int stride = 15;
@@ -551,16 +547,16 @@ void Renderer::CreateParticles(int cnt)
 		float size = 0.01 * (float)rand() / (float)RAND_MAX;
 		float centerX = 0;// ((float)rand() / (float)RAND_MAX) * 2.f - 1.f;
 		float centerY = 0;// ((float)rand() / (float)RAND_MAX) * 2.f - 1.f;
-		float value = ((float)rand() / (float)RAND_MAX);//1;
+		float value = ((float)rand() / (float)RAND_MAX);
 		float r = ((float)rand() / (float)RAND_MAX);
 		float g = ((float)rand() / (float)RAND_MAX);
 		float b = ((float)rand() / (float)RAND_MAX);
 		float a = 1;// ((float)rand() / (float)RAND_MAX);
-		float sTime = ((float)rand() / (float)RAND_MAX) * 2.f;
-		float vx = (((float)rand() / (float)RAND_MAX) * 2.f - 1.f) * 3;
-		float vy = ((float)rand() / (float)RAND_MAX) * 5.f;// - 1.f; // -1 ~ 1 -> 0 ~ 1
+		float sTime = ((float)rand() / (float)RAND_MAX) * 2.f; // 0~2
+		float vx = (((float)rand() / (float)RAND_MAX) * 2.f - 1.f) * 3; //-3 ~ 3
+		float vy = ((float)rand() / (float)RAND_MAX) * 5.f;// 0 ~ 5
 		float vz = 0.f;// ((float)rand() / (float)RAND_MAX) * 2.f - 1.f;
-		float lifeTime = ((float)rand() / (float)RAND_MAX) * 1.5f; // 1 ~ 4
+		float lifeTime = ((float)rand() / (float)RAND_MAX) * 1.5f;
 		float mass = ((float)rand() / (float)RAND_MAX) * 1.f + 1.f; // 1 ~ 2
 		float period = ((float)rand() / (float)RAND_MAX);
 
