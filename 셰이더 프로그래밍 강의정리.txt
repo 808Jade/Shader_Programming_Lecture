@@ -307,9 +307,16 @@ git reset --hard
 		시험에는안나옴..
 	
 
-
-
-
+[ 11.12 11주 2 ] 예비군
+[ 11.12 11주 2 ]
+텍스쳐 매핑
+* Fragment Shader 에서 Texture sampling
+	요즘은 Vertex Shader에서 할 수도
+* 택스쳐 매핑 해보았다
+* 간단한 블러 해보았다
+* gpt 이용해서 fs효과 보았음
+* gridmesh flag 에 텍스쳐를 매핑해보앗음
+*** ppt 실습 (if 문 없이..) 시험에 나옵니다
 
 
 
