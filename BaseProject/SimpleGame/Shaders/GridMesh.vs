@@ -4,6 +4,7 @@
 in vec3 a_Position;
 
 out vec4 v_Color;
+out vec2 v_UV;
 
 uniform float u_Time;
 uniform vec4 u_Points[MAX_POINTS];
@@ -26,9 +27,10 @@ void flag()
 
 	gl_Position = newPosition;
 
-	float shading = (sin(value - u_Time * 10) + 1) / 2 + 0.2 ;
+	float shading = (sin(value - u_Time * 10) + 1) / 2 + 0.2;
 
 	v_Color = vec4(shading);
+	v_UV = vec2(a_Position.x + 0.5, 0.5 - a_Position.y);
 }
 
 void wave()
@@ -101,8 +103,8 @@ void Q1() // 물결, 다이아몬드
 
 void main()
 {
-	//flag();
+	flag();
 	//wave();
     //rainDrop();
-	Q1();
+	//Q1();
 }
