@@ -44,9 +44,24 @@ void Circles()
 	FragColor = newColor;
 }
 
+void Flag()
+{
+    // 계산이 너무 복잡해져서 좌표계를 바꾼다
+    vec2 newUV = vec2(v_UV.x, (1 - v_UV.y) - 0.5);
+    float sinValue = v_UV.x * sin(v_UV.x * 2 * PI - u_Time * 5) * 0.2;
+    vec4 newColor = vec4(0);
+    float width = 0.2 * abs(sin(1 - v_UV.x) * 1 * PI);
+
+    if (sinValue + width > newUV.y && sinValue - width < newUV.y)
+    {
+        newColor = vec4(1);
+    }
+    FragColor = newColor;
+}
 
 void main()
 {
     //Test();
-    Circles();
+    //Circles();
+    Flag();
 }
