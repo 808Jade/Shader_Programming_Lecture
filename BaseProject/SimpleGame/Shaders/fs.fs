@@ -56,12 +56,39 @@ void Flag()
     {
         newColor = vec4(1);
     }
+    else
+        discard;
     FragColor = newColor;
+}
+
+void Q1() // *****
+{
+    float newX = v_UV.x;
+    float newY = 1 - abs((v_UV.y * 2) - 1); // 0 ~ 1 ~ 0
+    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+}
+
+void Q2() // ******
+{
+    // UV 좌표값은 좌상단 0,0 우하단 1,1
+    float newX = fract(v_UV.x * 3); // 0~1 0~1 0~1
+    float newY = (2 - floor(v_UV.x * 3)) / 3 + (v_UV.y / 3);// 2/3 ~ 3/3  offset 2 
+                                                            // 1/3 ~ 2/3  offset 1
+                                                            // 0/3 ~ 1/3  offset 0
+    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+}
+
+void Q3()
+{
+    // ppt 실습
+    // 절차적 텍스쳐링
 }
 
 void main()
 {
     //Test();
     //Circles();
-    Flag();
+    //Flag();
+    //Q1();
+    Q2();
 }
