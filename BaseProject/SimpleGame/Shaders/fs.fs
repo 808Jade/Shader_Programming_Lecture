@@ -37,11 +37,9 @@ void Circles()
 	vec2 center = vec2(0.5, 0.5);
 	float d = distance(newUV, center);
     vec4 newColor = vec4(0);
-
-	if (d < 0.5)
-	{
-		newColor = vec4(1);
-	}
+    
+    float value = sin(d * 4 * PI * 4 - u_Time * 10);
+    newColor = vec4(value);
 
 	FragColor = newColor;
 }
