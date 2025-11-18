@@ -9,9 +9,9 @@ uniform float u_Time;
 
 const float PI = 3.141592;
 
-void main()
+void Test()
 {
-    //// 파동 강도
+	//// 파동 강도
     //float amplitude = 0.04;  // 높을수록 크게 흔들림
     //// 파동 주기
     //float frequency = 2.0;  // 높을수록 촘촘
@@ -29,4 +29,26 @@ void main()
     newPos.y += sin(0.5 * v_UV.x * PI * 2 + u_Time);
     vec4 newColor = texture(u_RGBTexture, newPos);
     FragColor = newColor;
+}
+
+void Circles()
+{
+	vec2 newUV = v_UV;
+	vec2 center = vec2(0.5, 0.5);
+	float d = distance(newUV, center);
+    vec4 newColor = vec4(0);
+
+	if (d < 0.5)
+	{
+		newColor = vec4(1);
+	}
+
+	FragColor = newColor;
+}
+
+
+void main()
+{
+    //Test();
+    Circles();
 }
