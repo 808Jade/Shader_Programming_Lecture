@@ -548,10 +548,10 @@ void Renderer::DrawFS()
 	glUniform1i(uSamplerNUM, number); // 어느 슬롯의 텍스쳐를 쓸 것인가
 
 	int uSamplerTotalNum = glGetUniformLocation(shader, "u_TotalNumTexture");
-	glUniform1i(uSamplerTotalNum, 10);
+	glUniform1i(uSamplerTotalNum, 11);
 
 	int uSamplerNumber = glGetUniformLocation(shader, "u_Number");
-	glUniform1i(uSamplerNumber, 5);
+	glUniform1i(uSamplerNumber, 7);
 
 	glActiveTexture(GL_TEXTURE0); // 슬롯
 	glBindTexture(GL_TEXTURE_2D, m_RGBTexture);
