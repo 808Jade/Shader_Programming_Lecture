@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Renderer.h"
+#include <cmath>
 
 Renderer::Renderer(int windowSizeX, int windowSizeY)
 {
@@ -43,6 +44,17 @@ void Renderer::Initialize(int windowSizeX, int windowSizeY)
 
 	// Load Texture
 	m_RGBTexture = CreatePngTexture("./Textures/rgb.png", GL_NEAREST);
+	m_0Texture = CreatePngTexture("./Textures/0.png", GL_NEAREST);
+	m_1Texture = CreatePngTexture("./Textures/1.png", GL_NEAREST);
+	m_2Texture = CreatePngTexture("./Textures/2.png", GL_NEAREST);
+	m_3Texture = CreatePngTexture("./Textures/3.png", GL_NEAREST);
+	m_4Texture = CreatePngTexture("./Textures/4.png", GL_NEAREST);
+	m_5Texture = CreatePngTexture("./Textures/5.png", GL_NEAREST);
+	m_6Texture = CreatePngTexture("./Textures/6.png", GL_NEAREST);
+	m_7Texture = CreatePngTexture("./Textures/7.png", GL_NEAREST);
+	m_8Texture = CreatePngTexture("./Textures/8.png", GL_NEAREST);
+	m_9Texture = CreatePngTexture("./Textures/9.png", GL_NEAREST);
+	m_TotalNumTexture = CreatePngTexture("./Textures/numbers.png", GL_NEAREST);
 
 	if (m_TestShader > 0 && m_VBORect > 0)
 	{
@@ -520,6 +532,7 @@ void Renderer::DrawFullScreenColor(float r, float g, float b, float a)
 void Renderer::DrawFS()
 {
 	m_Time += 0.016f;
+	int number = (int)floor(m_Time) % 10 + 1;
 
 	//Program select
 	int shader = m_FSShader;
@@ -529,9 +542,41 @@ void Renderer::DrawFS()
 	glUniform1f(uTimeLoc, m_Time);
 
 	int uSamplerRBG = glGetUniformLocation(shader, "u_RGBTexture");
-	glUniform1i(uSamplerRBG, 0);
+	glUniform1i(uSamplerRBG, 0); // 어느 슬롯의 텍스쳐를 쓸 것인가
 
+	int uSamplerNUM = glGetUniformLocation(shader, "u_NUMTexture");
+	glUniform1i(uSamplerNUM, number); // 어느 슬롯의 텍스쳐를 쓸 것인가
+
+	int uSamplerTotalNum = glGetUniformLocation(shader, "u_TotalNumTexture");
+	glUniform1i(uSamplerTotalNum, 10);
+
+	int uSamplerNumber = glGetUniformLocation(shader, "u_Number");
+	glUniform1i(uSamplerNumber, 5);
+
+	glActiveTexture(GL_TEXTURE0); // 슬롯
 	glBindTexture(GL_TEXTURE_2D, m_RGBTexture);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, m_0Texture);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, m_1Texture);
+	glActiveTexture(GL_TEXTURE3);
+	glBindTexture(GL_TEXTURE_2D, m_2Texture);
+	glActiveTexture(GL_TEXTURE4);
+	glBindTexture(GL_TEXTURE_2D, m_3Texture);
+	glActiveTexture(GL_TEXTURE5);
+	glBindTexture(GL_TEXTURE_2D, m_4Texture);
+	glActiveTexture(GL_TEXTURE6);
+	glBindTexture(GL_TEXTURE_2D, m_5Texture);
+	glActiveTexture(GL_TEXTURE7);
+	glBindTexture(GL_TEXTURE_2D, m_6Texture);
+	glActiveTexture(GL_TEXTURE8);
+	glBindTexture(GL_TEXTURE_2D, m_7Texture);
+	glActiveTexture(GL_TEXTURE9);
+	glBindTexture(GL_TEXTURE_2D, m_8Texture);
+	glActiveTexture(GL_TEXTURE10);
+	glBindTexture(GL_TEXTURE_2D, m_9Texture);
+	glActiveTexture(GL_TEXTURE11);
+	glBindTexture(GL_TEXTURE_2D, m_TotalNumTexture);
 
 	int attribPosition = glGetAttribLocation(shader, "a_Position");
 	glEnableVertexAttribArray(attribPosition);

@@ -3,6 +3,10 @@
 layout(location = 0) out vec4 FragColor;
 
 uniform sampler2D u_RGBTexture;
+uniform sampler2D u_NUMTexture;
+uniform sampler2D u_TotalNumTexture;
+uniform int u_Number;
+
 in vec2 v_UV;
 
 uniform float u_Time;
@@ -103,6 +107,35 @@ void Q5()
     FragColor = texture(u_RGBTexture, vec2(newX, newY));
 }
 
+void Number()
+{
+    FragColor = texture(u_NUMTexture, v_UV);
+}
+
+void TotalNumber()
+{
+    // 각 셀 크기
+    // 좌우로 1/5 위아래로 1/2
+    vec2 cellSize = vec2(1.0 / 5.0, 1.0 / 2.0);
+
+    // u_Number에 해당하는 row, col 계산
+    // 0~4 → 윗줄, 5~9 → 아래줄
+    // u_Num = 9
+    // col = 4 // 의 몇 번째
+    // row = 1 // 0 윗줄 1 아랫줄
+    int col = u_Number % 5;
+    int row = u_Number / 5;
+
+    // UV offset 계산
+    vec2 tileOrigin = vec2(col, row) * cellSize;
+
+    // 화면 전체(v_UV)를 해당 셀의 텍스쳐 좌표로 매핑
+    vec2 numberUV = tileOrigin + v_UV * cellSize;
+
+    // 텍스쳐 샘플링
+    FragColor = texture(u_TotalNumTexture, numberUV);
+}
+
 void main()
 {
     //Test();
@@ -112,5 +145,6 @@ void main()
     //Q2();
     //Q3();
     //Q4();
-    Q5();
+    //Q5();
+    TotalNumber();
 }
