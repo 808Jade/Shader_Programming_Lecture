@@ -80,8 +80,27 @@ void Q2() // ******
 
 void Q3()
 {
-    // ppt 실습
-    // 절차적 텍스쳐링
+    float newX = fract(v_UV.x * 3);
+    float newY = fract(v_UV.x * 3) / 3 + v_UV.y / 3;
+    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+}
+
+void Q4()
+{
+    float count = 6; // uniform 으로 뺄 수 있다
+    float shift = 0.5 + u_Time / 10; // uniform 으로 뺄 수 있다
+    float newX = fract(fract(v_UV.x * count) + (floor(v_UV.y * count) + 1) * shift);
+    float newY = fract(v_UV.y * count);
+    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+}
+
+void Q5()
+{
+    float count = 2; // uniform 으로 뺄 수 있다
+    float shift = 0.5; // uniform 으로 뺄 수 있다
+    float newX = fract(v_UV.x * count);
+    float newY = fract(fract(v_UV.y * count) + (floor(v_UV.x * count) + 1) * shift);
+    FragColor = texture(u_RGBTexture, vec2(newX, newY));
 }
 
 void main()
@@ -90,5 +109,8 @@ void main()
     //Circles();
     //Flag();
     //Q1();
-    Q2();
+    //Q2();
+    //Q3();
+    //Q4();
+    Q5();
 }
