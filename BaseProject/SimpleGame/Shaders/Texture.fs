@@ -133,9 +133,20 @@ void RainDrop()
     FragColor1 = vec4(color, 1.0);
 }
 
-
+void Pixelized()
+{
+    vec2 newUV = v_Tex;
+    float resol = sin(u_Time);
+    newUV.x = floor(newUV.x * resol) / 100;
+    newUV.y = floor(newUV.y * resol) / 100;
+    FragColor = texture(u_TexID, vec2(newUV.x, 1-newUV.y)); // textured?
+}
 
 void main()
 {
+    //Lense();
+    //Heat();
+    //Mosaic();
     RainDrop();
+    //Pixelized();
 }
