@@ -654,6 +654,7 @@ void Renderer::DrawFBOs()
 
 void Renderer::DrawTexture(float x, float y, float sizeX, float sizeY, GLuint textureID)
 {
+	m_Time += 0.0016;
 	// Program select
 	int shader = m_texShader;
 	glUseProgram(shader);
@@ -667,6 +668,8 @@ void Renderer::DrawTexture(float x, float y, float sizeX, float sizeY, GLuint te
 	glUniform2f(u_Trans, x, y);
 	int u_Scale = glGetUniformLocation(shader, "u_Scale");
 	glUniform2f(u_Scale, sizeX, sizeY);
+	int uTimeLoc = glGetUniformLocation(shader, "u_Time");
+	glUniform1f(uTimeLoc, m_Time);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureID);

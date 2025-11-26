@@ -150,5 +150,5 @@ void main()
     //TotalNumber();
 
     FragColor = Circles();
-    FragColor1 = Circles();
+    FragColor1 = Q5();
 }
