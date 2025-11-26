@@ -338,13 +338,13 @@ FS로 구현
 	무언가 그려지는 영역
 	윈도우 모드 vs 전체 모드
 	
-	layout(location =0) out vec4 FragColor 이야기
-	
+	layout(location =0) out vec4 FragColor 이야기	
+[ 11.26 13주 2 ]
+* viewport
+	현재 할당되어있는 
 
 
-
-
-
+* MRT
 
 
 

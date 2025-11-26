@@ -103,9 +103,13 @@ private:
 	GLuint m_FBO4 = 0;
 	
 	GLuint m_RT0 = 0;
+	GLuint m_RT0_1 = 0;
 	GLuint m_RT1 = 0;
+	GLuint m_RT1_1 = 0;
 	GLuint m_RT2 = 0;
+	GLuint m_RT2_1 = 0;
 	GLuint m_RT3 = 0;
+	GLuint m_RT3_1 = 0;
 	GLuint m_RT4 = 0;
 };
 

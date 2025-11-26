@@ -1,6 +1,7 @@
 #version 330
 
 layout(location = 0) out vec4 FragColor;
+layout(location = 1) out vec4 FragColor1;
 
 uniform sampler2D u_RGBTexture;
 uniform sampler2D u_NUMTexture;
@@ -13,7 +14,7 @@ uniform float u_Time;
 
 const float PI = 3.141592;
 
-void Test()
+vec4 Test()
 {
 	//// 파동 강도
     //float amplitude = 0.04;  // 높을수록 크게 흔들림
@@ -32,10 +33,10 @@ void Test()
     vec2 newPos = v_UV;
     newPos.y += sin(0.5 * v_UV.x * PI * 2 + u_Time);
     vec4 newColor = texture(u_RGBTexture, newPos);
-    FragColor = newColor;
+    return newColor;
 }
 
-void Circles()
+vec4 Circles()
 {
 	vec2 newUV = v_UV;
 	vec2 center = vec2(0.5, 0.5);
@@ -45,10 +46,10 @@ void Circles()
     float value = sin(d * 4 * PI * 4 - u_Time * 10);
     newColor = vec4(value);
 
-	FragColor = newColor;
+	return newColor;
 }
 
-void Flag()
+vec4 Flag()
 {
     // 계산이 너무 복잡해져서 좌표계를 바꾼다
     vec2 newUV = vec2(v_UV.x, (1 - v_UV.y) - 0.5);
@@ -62,49 +63,49 @@ void Flag()
     }
     else
         discard;
-    FragColor = newColor;
+    return newColor;
 }
 
-void Q1() // *****
+vec4 Q1() // *****
 {
     float newX = v_UV.x;
     float newY = 1 - abs((v_UV.y * 2) - 1); // 0 ~ 1 ~ 0
-    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+    return texture(u_RGBTexture, vec2(newX, newY));
 }
 
-void Q2() // ******
+vec4 Q2() // ******
 {
     // UV 좌표값은 좌상단 0,0 우하단 1,1
     float newX = fract(v_UV.x * 3); // 0~1 0~1 0~1
     float newY = (2 - floor(v_UV.x * 3)) / 3 + (v_UV.y / 3);// 2/3 ~ 3/3  offset 2 
                                                             // 1/3 ~ 2/3  offset 1
                                                             // 0/3 ~ 1/3  offset 0
-    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+    return texture(u_RGBTexture, vec2(newX, newY));
 }
 
-void Q3()
+vec4 Q3()
 {
     float newX = fract(v_UV.x * 3);
     float newY = fract(v_UV.x * 3) / 3 + v_UV.y / 3;
-    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+    return texture(u_RGBTexture, vec2(newX, newY));
 }
 
-void Q4()
+vec4 Q4()
 {
     float count = 6; // uniform 으로 뺄 수 있다
     float shift = 0.5 + u_Time / 10; // uniform 으로 뺄 수 있다
     float newX = fract(fract(v_UV.x * count) + (floor(v_UV.y * count) + 1) * shift);
     float newY = fract(v_UV.y * count);
-    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+    return texture(u_RGBTexture, vec2(newX, newY));
 }
 
-void Q5()
+vec4 Q5()
 {
     float count = 2; // uniform 으로 뺄 수 있다
     float shift = 0.5; // uniform 으로 뺄 수 있다
     float newX = fract(v_UV.x * count);
     float newY = fract(fract(v_UV.y * count) + (floor(v_UV.x * count) + 1) * shift);
-    FragColor = texture(u_RGBTexture, vec2(newX, newY));
+    return texture(u_RGBTexture, vec2(newX, newY));
 }
 
 void Number()
@@ -146,5 +147,8 @@ void main()
     //Q3();
     //Q4();
     //Q5();
-    TotalNumber();
+    //TotalNumber();
+
+    FragColor = Circles();
+    FragColor1 = Circles();
 }
