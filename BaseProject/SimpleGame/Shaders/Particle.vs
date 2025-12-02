@@ -8,12 +8,15 @@ in vec3 a_Vel;
 in float a_LifeTime; 
 in float a_Mass;
 in float a_Period;
+in vec2 a_Tex;
 
 out vec4 v_Color;
+out vec2 v_Tex;
 
 uniform vec4 u_Trans;
 uniform float u_Time;
 uniform vec3 u_Force;
+uniform int u_texture;
 
 const float c_PI = 3.141592;
 const vec3 c_g = vec3(0, -9.8, 0);
@@ -197,6 +200,8 @@ void main()
 	//fountain();
 	//myfountain();
 	//sinParticle();
-	//circleParticle();
-	Q3();
+	circleParticle();
+	//Q3();
+
+	v_Tex = a_Tex;
 }
